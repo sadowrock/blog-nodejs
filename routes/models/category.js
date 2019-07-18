@@ -8,7 +8,7 @@ const CategorySchema = new Schema ({
         maxlength: 255,
     },
     tags: {
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: 'tag',
         required: true,
     },

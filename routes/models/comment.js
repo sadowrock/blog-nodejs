@@ -16,11 +16,6 @@ const CommentSchema = new Schema ({
         ref: 'post',
         unique: true,
     },
-    tag_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'tag',
-        unique: true,
-    },
     created_at: {
         type: Date,
     },

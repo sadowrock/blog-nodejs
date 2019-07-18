@@ -4,10 +4,26 @@ var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const routes = require('./routes/routes')
+const mongoose = require('mongoose')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
 
+//connect db
+mongoose.connect('mongodb://localhost:27017/blog', (err) => {
+    if (err) throw err;
+    console.log('Successfully connected');
+});
 
-
-
+//use session
+app.use(session({
+  secret: 'work hard',
+  resave: true, 
+  saveUninitialized: false,
+  store: new MongoStore({
+      mongooseConnection: db
+  })
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-app.use('/', indexRouter);
+app.use('/', routes);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

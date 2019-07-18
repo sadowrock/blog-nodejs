@@ -5,22 +5,20 @@ const PostShema = new Schema ({
     title: {
         type: String,
         required: true,
-        maxlength: 255,
+        maxlength: 150,
     },
     content: {
         type: String,
         required: true,
-        maxlength: 800,
+        maxlength: 2000,
     },
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'user',
-        required: true,
     },
     tags: {
-        type: Array, 
-        ref: 'tag', 
-        required: true,
+        type: [Schema.Types.ObjectId],
+        ref: 'tag',    
     },
     created_at: {
         type: Date,

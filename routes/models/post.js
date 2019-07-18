@@ -4,22 +4,21 @@ const Schema = mongoose.Schema;
 const PostShema = new Schema ({
     title: {
         type: String,
+        required: true,
+        maxlength: 255,
     },
     content: {
         type: String,
+        required: true,
+        maxlength: 800,
     },
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true,
     },
-    comment_id: {
-        type: Schema.Types.ObjectId, 
-        ref: 'comment',
-        required: true,
-    },
-    tag_id: {
-        type: Schema.Types.ObjectId, 
+    tags: {
+        type: Array, 
         ref: 'tag', 
         required: true,
     },

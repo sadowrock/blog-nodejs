@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema ({
     content: {
         type: String,
+        maxlength: 800,
     },
     user_id: {
         type: Schema.Types.ObjectId,
@@ -13,11 +14,6 @@ const CommentSchema = new Schema ({
     post_id: {
         type: Schema.Types.ObjectId,
         ref: 'post',
-        unique: true,
-    },
-    comment_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'comment',
         unique: true,
     },
     tag_id: {

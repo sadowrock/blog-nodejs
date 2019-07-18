@@ -5,28 +5,16 @@ const TagSchema = new Schema ({
     tag_name: {
         type: String,
         unique: true,
+        maxlength: 255,
     },
     tag_description: {
         type: String,
+        required: true,
+        maxlength: 255,
     },
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'user',
-        unique: true,
-    },
-    post_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'post',
-        unique: true,
-    },
-    comment_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'comment',
-        unique: true,
-    },
-    category_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'category',
         unique: true,
     },
     created_at: {

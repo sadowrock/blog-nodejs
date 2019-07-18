@@ -5,8 +5,9 @@ const CategorySchema = new Schema ({
     category_name: {
         type: String,
         required: true,
+        maxlength: 255,
     },
-    tag_id: {
+    tags: {
         type: Schema.Types.ObjectId,
         ref: 'tag',
         required: true,

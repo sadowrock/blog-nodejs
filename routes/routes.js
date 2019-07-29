@@ -1,5 +1,7 @@
 const express = require('express')
 const route = express.Router()
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const {register, login, logout} = require('../controllers/UserControllers')
 const {UserValidator, PostValidatior, CommentValidatior, TagValidatior, CategoryValidatior} = require('../validators/validator')
 const {listPost, detailPost, createPost, editPost, deletePost} = require('../controllers/PostControllers')
@@ -23,7 +25,7 @@ function requiresLogin(req, res, next){
     }
 }
 
-route.post('/register', UserValidator, register)
+route.post('/register', UserValidator, register);
 route.post('/login', requiresLogout, login)
 route.get('/logout', requiresLogin, logout)
 //post 
@@ -45,4 +47,4 @@ route.post('/category/:id', requiresLogin, CategoryValidatior, createCategory)
 route.put('/category/:id/edit', requiresLogin, CategoryValidatior, editCategory)
 route.delete('/category/:id', requiresLogin, deleteCategory)
 
-module.exports = router;
+module.exports = route;

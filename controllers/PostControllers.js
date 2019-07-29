@@ -8,7 +8,7 @@ exports.listPost = (req, res) => {
     })
 }
 
-exports.detalPost = (req, res) => {
+exports.detailPost = (req, res) => {
     Post.findById(res.params.id)
         .populate('user_id')
         .populate('tags')
@@ -48,7 +48,7 @@ exports.editPost = (req, res) => {
 
 exports.deletePost = (req, res) => {
     Post.remove({_id: req.params.id}, (err) => {
-        if (err) {return res.json({err})}
+        if(err) {return res.json({err})}
         res.json({'mess': 'Delete success'})
     })
 }

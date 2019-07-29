@@ -18,10 +18,10 @@ mongoose.connect('mongodb://localhost:27017/blog', (err) => {
 //use session
 app.use(session({
   secret: 'work hard',
-  resave: true, 
+  resave: true,
   saveUninitialized: false,
   store: new MongoStore({
-      mongooseConnection: db
+    mongooseConnection: mongoose.connection
   })
 }));
 

@@ -3,23 +3,22 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema ({
     username: {
-        type: String,
-        required: true,
-        maxlength: 25,
-        minlength: 6,
+        type: String, 
+        required: true, 
+        trim: true, 
+        minlength: 2
     },
     password: {
-        type: String,
-        required: true,
-        maxlength: 25,
-        minlength: 6,
+        type: String, 
+        required: true, 
+        trim: true, 
+        minlength: 6
     },
     email: {
         type: String,
-        required: true,
         unique: true,
-        maxlength: 25,
-        minlength: 6,
+        required: true, 
+        trim: true
     },
     created_at: {
         type: Date,

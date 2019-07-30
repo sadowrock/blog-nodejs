@@ -1,20 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var app = express();
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError = require('http-errors')
+var express = require('express')
+var app = express()
+var path = require('path')
+var cookieParser = require('cookie-parser')
+var logger = require('morgan')
 const routes = require('./routes/routes')
 const mongoose = require('mongoose')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session)
+const bodyParser = require('body-parser')
+
 
 //connect db
 mongoose.connect('mongodb://localhost:27017/blog', (err) => {
     if (err) throw err;
     console.log('Successfully connected');
 });
-
+mongoose.connection.on('error', (err) => {
+  console.log('DB connection error:', err.message);
+})
+app.use(bodyParser.json())
 //use session
 app.use(session({
   secret: 'work hard',

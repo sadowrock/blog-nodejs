@@ -6,7 +6,7 @@ exports.register = (req, res, next) => {
     User.findOne({username: req.body.username}, (err, user) => {
         if (user === null){
             bcrypt.genSalt(numSaltRounds, (err, salt) => {
-                bcrypt.hash('someplaintextpassword', salt, (err, hash) => {
+                bcrypt.hash(req.body.password, salt, (err, hash) => {
                     if (err) {return next (err); }
                          const user = new User(req.body)
                          user.password = hash
@@ -29,16 +29,17 @@ exports.login = (req, res) => {
         if (err) {
             return res.json({err})
         } else if (!user){
-            return res.json({err: 'Username and Password are incorrect'})
-        }
+            return res.json({err: 'Username and Password are incorrect !'})
+            }
         bcrypt.compare(req.body.password, user.password, (err, result) => {
-            if (result === true) {
-                res.session.user = user
+            if (result === false) {
+                req.session.user = user
                 res.json({  
                     user: user,
                     'login': 'success'
               })
-            } else {
+            } 
+            else {
                 return res.json({err: 'Username and Password are incorrect'})
             }
         })

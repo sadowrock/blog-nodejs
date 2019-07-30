@@ -21,10 +21,10 @@ exports.UserValidator = (req, res, next) => {
 
 exports.PostValidatior = (req, res, next) => {
     // Title
-    check('title', 'Title is required.').notEmpty();
+    check('title', 'Title is required.').not().isEmpty();
     check('title', 'Title must be between to 150 characters').isLength({max: 150});
     // Content
-    check('content', 'Content is required.').notEmpty();
+    check('content', 'Content is required.').not().isEmpty();
     check('content', 'Content must be between to 2000 characters').isLength({max: 2000});
 
     //check for errors
@@ -37,7 +37,7 @@ exports.PostValidatior = (req, res, next) => {
 
 exports.CommentValidatior = (req, res, next) => {
     //Content
-    check('content', 'Content is required.').notEmpty();
+    check('content', 'Content is required.').not().isEmpty();
     check('content', 'Content must be between to 800 charaters').isLength({max: 800});
 
     //check for errors
@@ -50,11 +50,11 @@ exports.CommentValidatior = (req, res, next) => {
 
 exports.TagValidatior = (req, res, next) => {
     //name
-    check('Tag_name', 'Tag_name is required.').notEmpty();
+    check('Tag_name', 'Tag_name is required.').not().isEmpty();
     check('Tag_name', 'Tag_name must be between to 80 charaters').isLength({max: 80});
 
     //description
-    check('Tag_description', 'Tag_description is required.').notEmpty();
+    check('Tag_description', 'Tag_description is required.').not().isEmpty();
     check('Tag_description', 'Tag_description must be between to 80 charaters').isLength({max: 80});
 
     const errors = validationResult(req);
@@ -66,7 +66,7 @@ exports.TagValidatior = (req, res, next) => {
 
 exports.CategoryValidatior = (req, res, next) => {
     //name
-    check('category_name', 'category_name is required.').notEmpty();
+    check('category_name', 'category_name is required.').not().isEmpty();
     check('category_name', 'category_name must be between to 80 charaters').isLength({max: 80});
 
     const errors = validationResult(req);

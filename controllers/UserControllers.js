@@ -32,7 +32,7 @@ exports.login = (req, res) => {
             return res.json({err: 'Username and Password are incorrect !'})
             }
         bcrypt.compare(req.body.password, user.password, (err, result) => {
-            if (result === false) {
+            if (result == false) {
                 req.session.user = user
                 res.json({  
                     user: user,
@@ -47,7 +47,7 @@ exports.login = (req, res) => {
 }
 
 exports.logout = (req, res) => {
-    if (req.session) {
+    if (req.session.user) {
         //delete session object
         req.session.destroy((err) => {
             if (err) {
